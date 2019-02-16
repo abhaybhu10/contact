@@ -10,6 +10,7 @@ import excpetion.AppExceptionMapper;
 import io.dropwizard.Application;
 import io.dropwizard.Configuration;
 import io.dropwizard.setup.Environment;
+import persister.DDBClient;
 import persister.DDBPersister;
 
 /**
@@ -18,7 +19,8 @@ import persister.DDBPersister;
 public class ContactApp extends Application<Configuration> {
     @Override
     public void run(Configuration configuration, Environment environment) {
-        environment.jersey().register(new ContactResource(new ContactImpl(new DDBPersister())));
+        environment.jersey()
+            .register(new ContactResource(new ContactImpl(new DDBPersister(DDBClient.getDdbMapper()))));
         environment.jersey().register(new AppExceptionMapper());
         environment.jersey().register(new RequestFilter());
     }

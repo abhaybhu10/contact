@@ -1,6 +1,6 @@
 package contact;
 
-import contants.ContactConstants;
+import constants.ContactConstants;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.Validate;
 import persister.Persister;

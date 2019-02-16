@@ -1,4 +1,4 @@
-package contants;
+package constants;
 
 /**
  * Created by kuabhay on 16/02/19

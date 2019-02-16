@@ -1,13 +1,15 @@
 package persister;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression;
 import com.amazonaws.services.dynamodbv2.datamodeling.QueryResultPage;
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
+import lombok.AllArgsConstructor;
 import pojo.ContactData;
-import contants.ContactConstants;
+import constants.ContactConstants;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +23,9 @@ import java.util.Map;
  * Created by kuabhay on 01/02/19
  */
 @Slf4j
+@AllArgsConstructor
 public class DDBPersister implements Persister{
+    private final DynamoDBMapper mapper;
 
     @Override
     public boolean persistData(@NonNull ContactData contact) {

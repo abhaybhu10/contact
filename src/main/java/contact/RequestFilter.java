@@ -1,6 +1,6 @@
 package contact;
 
-import contants.ContactConstants;
+import constants.ContactConstants;
 import excpetion.AppException;
 
 import javax.ws.rs.container.ContainerRequestContext;
