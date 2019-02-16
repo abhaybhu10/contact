@@ -32,7 +32,7 @@ public class DDBPersister implements Persister{
         Preconditions.checkNotNull(contact.getEmail(), "Email address should not be null");
         Preconditions.checkNotNull(contact.getNumber(), "Number should not be null");
         Preconditions.checkNotNull(contact.getContactName(), "FirstName can't be null");
-        DDBClient.getDdbMapper().save(contact);
+        mapper.save(contact);
         return true;
     }
 
@@ -44,7 +44,7 @@ public class DDBPersister implements Persister{
         contactData.setEmail(key);
         queryExpression.setHashKeyValues(contactData);
 
-        List<ContactData> retrievedData = DDBClient.getDdbMapper().query(ContactData.class, queryExpression);
+        List<ContactData> retrievedData = mapper.query(ContactData.class, queryExpression);
 
         if (retrievedData == null || retrievedData.size() == 0 ) {
             log.info("No entry is present in ddb for key {}", key);
@@ -104,7 +104,7 @@ public class DDBPersister implements Persister{
             return false;
         }
         contact.setEmail(fetchedData.getEmail());
-        DDBClient.getDdbMapper().save(contact, dynamoDBMapperConfig);
+        mapper.save(contact, dynamoDBMapperConfig);
         return true;
     }
 
@@ -112,6 +112,6 @@ public class DDBPersister implements Persister{
     public void deleteData(String key) {
         ContactData contactData = new ContactData();
         contactData.setEmail(key);
-        DDBClient.getDdbMapper().delete(contactData);
+        mapper.delete(contactData);
     }
 }
